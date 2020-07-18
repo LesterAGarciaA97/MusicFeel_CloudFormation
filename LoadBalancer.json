@@ -39,7 +39,7 @@
 			"AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
 			"ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
 		},
-		"HTTPSLocation": {
+		"CustomLocation": {
 			"Description": "The IP address range that can be used to HTTPS to the EC2 instances",
 			"Type": "String",
 			"MinLength": "9",
@@ -134,10 +134,10 @@
 				  },
 				  {
 					"IpProtocol": "tcp",
-					"FromPort": "443",
-					"ToPort": "443",
+					"FromPort": "3001",
+					"ToPort": "3001",
 					"CidrIp": {
-					  "Ref": "HTTPSLocation"
+					  "Ref": "CustomLocation"
 					}
 				  }
 			]
