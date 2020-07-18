@@ -333,6 +333,19 @@ Resources:
           - AWSInstanceType2Arch
           - Ref: InstanceType
           - Arch
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          sudo apt update
+          sudo apt install docker.io
+          sudo apt install nodejs
+          sudo apt install npm
+          git clone https://github.com/LesterAGarciaA97/MusicFeel_CRUD.git
+          echo -e "DATABASE = MusicDatabase\nDATABASE_HOST = awesomesnowman.cygauzcyqzcb.us-east-1.rds.amazonaws.com\nDATABASE_USER = root\nDATABASE_PASSWORD = contrasena123456789\nJWT_SECRET = mysupersecretpassword\nJWT_EXPIRES_IN = 90d\nJWT_COOKIE_EXPIRES = 90\nKID = AKIAYRQQPAVGH55AH4YK\nSACCESS = p3tqEYVyfaY59iTtes/WLMKxaMiBw4Negwh+WhmW\nBUCKE = awesomesnowman" > /MusicFeel_CRUD/.env
+          cd MusicFeel_CRUD
+          sudo npm start
+          sudo docker run -d -p 9000:9000 nahbicris/spotirekog
+          sudo apt install neofetch
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
